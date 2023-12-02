@@ -1,7 +1,7 @@
 pub fn p1(input: &str) -> u32 {
     let parse = |line| {
-        let x = parse(Next(line), digit);
-        let y = parse(Back(line), digit);
+        let x = parse_line(Next(line), digit);
+        let y = parse_line(Back(line), digit);
         x * 10 + y
     };
 
@@ -10,15 +10,15 @@ pub fn p1(input: &str) -> u32 {
 
 pub fn p2(input: &str) -> u32 {
     let parse = |line| {
-        let x = parse(Next(line), |cx| digit(cx).or_else(|| literal(cx)));
-        let y = parse(Back(line), |cx| digit(cx).or_else(|| literal(cx)));
+        let x = parse_line(Next(line), |cx| digit(cx).or_else(|| literal(cx)));
+        let y = parse_line(Back(line), |cx| digit(cx).or_else(|| literal(cx)));
         x * 10 + y
     };
 
     input.lines().map(parse).sum()
 }
 
-fn parse<C, F>(mut cx: C, f: F) -> u32
+fn parse_line<C, F>(mut cx: C, f: F) -> u32
 where
     C: Context,
     F: Fn(C) -> Option<u32>,
