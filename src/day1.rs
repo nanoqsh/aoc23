@@ -1,7 +1,7 @@
 pub fn p1(input: &str) -> u32 {
     let parse = |line| {
         let x = parse_line(Next(line), digit);
-        let y = parse_line(Back(line), digit);
+        let y = parse_line(Prev(line), digit);
         x * 10 + y
     };
 
@@ -11,7 +11,7 @@ pub fn p1(input: &str) -> u32 {
 pub fn p2(input: &str) -> u32 {
     let parse = |line| {
         let x = parse_line(Next(line), |cx| digit(cx).or_else(|| literal(cx)));
-        let y = parse_line(Back(line), |cx| digit(cx).or_else(|| literal(cx)));
+        let y = parse_line(Prev(line), |cx| digit(cx).or_else(|| literal(cx)));
         x * 10 + y
     };
 
@@ -78,9 +78,9 @@ impl Context for Next<'_> {
 }
 
 #[derive(Clone, Copy)]
-struct Back<'a>(&'a str);
+struct Prev<'a>(&'a str);
 
-impl Context for Back<'_> {
+impl Context for Prev<'_> {
     fn next(self) -> Option<char> {
         self.0.chars().next_back()
     }
