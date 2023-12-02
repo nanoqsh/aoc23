@@ -30,7 +30,7 @@ struct Game {
 impl Game {
     fn parse(s: &str) -> Option<Self> {
         let (game, sets) = s.trim().split_once(':')?;
-        let id = game.strip_prefix("Game")?.trim().parse().ok()?;
+        let id = game.strip_prefix("Game ")?.parse().ok()?;
         let set = |s: &str| {
             let mut r @ mut g @ mut b = 0;
             for pair in s.split(',') {
