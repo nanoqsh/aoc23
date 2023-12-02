@@ -32,19 +32,19 @@ impl Game {
         let (game, sets) = s.trim().split_once(':')?;
         let id = game.strip_prefix("Game")?.trim().parse().ok()?;
         let set = |s: &str| {
-            let mut ns = [0; 3];
+            let mut r @ mut g @ mut b = 0;
             for pair in s.split(',') {
                 let (number, color) = pair.trim().split_once(' ')?;
                 let number: u32 = number.parse().ok()?;
                 match color {
-                    "red" => ns[0] += number,
-                    "green" => ns[1] += number,
-                    "blue" => ns[2] += number,
+                    "red" => r += number,
+                    "green" => g += number,
+                    "blue" => b += number,
                     _ => return None,
                 }
             }
 
-            Some(ns)
+            Some([r, g, b])
         };
 
         let sets: Option<_> = sets.split(';').map(set).collect();
