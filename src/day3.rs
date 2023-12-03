@@ -1,11 +1,11 @@
-pub fn p1(input: &str) -> u32 {
+pub fn part1(input: &str) -> u32 {
     let scheme = Scheme::parse(input);
     let mut sum = 0;
     scheme.numbers(|x| sum += x.num);
     sum
 }
 
-pub fn p2(input: &str) -> u32 {
+pub fn part2(input: &str) -> u32 {
     let scheme = Scheme::parse(input);
     let mut sum = 0;
     scheme.gears(|a, b| sum += a.num * b.num);
@@ -177,7 +177,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_p1() {
+    fn test_part1() {
         let input = "
             467..114..
             ...*......
@@ -191,12 +191,12 @@ mod tests {
             .664.598..
         ";
 
-        let output = p1(input);
+        let output = part1(input);
         assert_eq!(output, 4361);
     }
 
     #[test]
-    fn test_p2() {
+    fn test_part2() {
         let input = "
             467..114..
             ...*......
@@ -210,7 +210,7 @@ mod tests {
             .664.598..
         ";
 
-        let output = p2(input);
+        let output = part2(input);
         assert_eq!(output, 467835);
     }
 }

@@ -1,4 +1,4 @@
-pub fn p1(input: &str) -> u32 {
+pub fn part1(input: &str) -> u32 {
     const SET: Set = [12, 13, 14];
 
     let parse = |line| {
@@ -9,7 +9,7 @@ pub fn p1(input: &str) -> u32 {
     input.lines().filter_map(parse).sum()
 }
 
-pub fn p2(input: &str) -> u32 {
+pub fn part2(input: &str) -> u32 {
     let parse = |line| {
         let game = Game::parse(line)?;
         let [r, g, b] = game.minimal_set();
@@ -83,7 +83,7 @@ mod tests {
     }
 
     #[test]
-    fn test_p1() {
+    fn test_part1() {
         let input = "
             Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
             Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
@@ -92,12 +92,12 @@ mod tests {
             Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
         ";
 
-        let output = p1(input);
+        let output = part1(input);
         assert_eq!(output, 8);
     }
 
     #[test]
-    fn test_p2() {
+    fn test_part2() {
         let input = "
             Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
             Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
@@ -106,7 +106,7 @@ mod tests {
             Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
         ";
 
-        let output = p2(input);
+        let output = part2(input);
         assert_eq!(output, 2286);
     }
 }

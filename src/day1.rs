@@ -1,4 +1,4 @@
-pub fn p1(input: &str) -> u32 {
+pub fn part1(input: &str) -> u32 {
     let parse = |line| {
         let x = parse_line(Next(line), digit);
         let y = parse_line(Prev(line), digit);
@@ -8,7 +8,7 @@ pub fn p1(input: &str) -> u32 {
     input.lines().map(parse).sum()
 }
 
-pub fn p2(input: &str) -> u32 {
+pub fn part2(input: &str) -> u32 {
     let parse = |line| {
         let x = parse_line(Next(line), |cx| digit(cx).or_else(|| literal(cx)));
         let y = parse_line(Prev(line), |cx| digit(cx).or_else(|| literal(cx)));
@@ -99,7 +99,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_p1() {
+    fn test_part1() {
         let input = "
             1abc2
             pqr3stu8vwx
@@ -107,12 +107,12 @@ mod tests {
             treb7uchet
         ";
 
-        let output = p1(input);
+        let output = part1(input);
         assert_eq!(output, 142);
     }
 
     #[test]
-    fn test_p2() {
+    fn test_part2() {
         let input = "
             two1nine
             eightwothree
@@ -123,7 +123,7 @@ mod tests {
             7pqrstsixteen
         ";
 
-        let output = p2(input);
+        let output = part2(input);
         assert_eq!(output, 281);
     }
 }
