@@ -18,8 +18,7 @@ pub fn part2(input: &str) -> u32 {
     let mut stack: Vec<_> = (0..cards.len()).collect();
     let mut count = 0;
     while let Some(idx) = stack.pop() {
-        let mats = cards[idx] as usize;
-        stack.extend(idx + 1..=idx + mats);
+        stack.extend(idx + 1..=idx + cards[idx]);
         count += 1;
     }
 
@@ -47,8 +46,8 @@ impl Card {
         })
     }
 
-    fn count(&self) -> u32 {
-        self.nums.iter().filter(|n| self.wins.contains(n)).count() as u32
+    fn count(&self) -> usize {
+        self.nums.iter().filter(|n| self.wins.contains(n)).count()
     }
 }
 
